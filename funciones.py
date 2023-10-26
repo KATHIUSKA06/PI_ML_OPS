@@ -1,11 +1,13 @@
 import pandas as pd
 import fastapi
 from fastapi import FastAPI
+import pyarrow.parquet as pq
 
 # Cargar los DataFrames desde los archivos parquet
 games=pd.read_parquet("games.parquet")
 items=pd.read_parquet("items.parquet")
 reviews=pd.read_parquet("reviews.parquet")
+
 
 #funcion 1
 # Realizar una unión de los DataFrames
