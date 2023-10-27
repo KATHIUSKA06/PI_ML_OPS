@@ -42,20 +42,16 @@ def developer(desarrollador):
     return diccionario
 
 
-'''
+
 
 #funcion 2 
 #Realizar la unión de los DataFrames
 merged_reviews_games = reviews.merge(games[['item_id', 'price']])
 merged_reviews_games.drop(columns=['helpful','año',"sentiment_analysis"], inplace=True)
-items.drop(columns=['steam_id','item_name','playtime_2weeks'], inplace=True)
 
 def userdata(user_id):
     # Filtrar los datos para el usuario especificado
     user_data = merged_reviews_games[merged_reviews_games['user_id'] == user_id]
-
-    user_items = items[items['user_id'] == user_id]
-
     # Calcular la cantidad de dinero gastado por el usuario
     dinero_gastado = user_data['price'].sum()
 
@@ -64,7 +60,7 @@ def userdata(user_id):
     porcentaje_recomendacion = recomendacion / len(user_data) * 100
 
     # Calcular la cantidad de items
-    cantidad_de_items = user_items['item_id'].nunique()
+    cantidad_de_items = user_data['item_id'].nunique()
 
     # Crear un diccionario con los resultados
     resultados = {
@@ -75,7 +71,7 @@ def userdata(user_id):
 
     return resultados
 
-
+'''
 #funcion 3
 merged_items_games=pd.merge(games,items,on="item_id")
 
@@ -100,8 +96,8 @@ def UserForGenre(genero):
         Horas_por_año[clave_formateada] = valor_formateado
 
     return {"Usuario con más horas jugadas": usur_mas_horas, "Horas jugadas por año": Horas_por_año}
-
 '''
+
 #funcion 4
 
 def best_developer_year(año: int):
