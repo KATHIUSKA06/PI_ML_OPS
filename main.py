@@ -23,7 +23,7 @@ async def desarrollador(desarrollador: str):
         return {"error": str(e)}    
 
 
-@app.get("/user/{user_id}")
+@app.get("/userdata/{user_id}")
 async def user(user_id: str):
     try:
         result = userdata(user_id)
@@ -41,7 +41,7 @@ async def genre(genero: str):
         return {"error": str(e)}    
   '''  
 
-@app.get("/Mejor_desarrollador/{año}")
+@app.get("/best_developer_year/{año}")
 async def Best_developer_year(year: str):
     try:
         year_int = int(year)  # Convertir el año a un entero
@@ -50,7 +50,7 @@ async def Best_developer_year(year: str):
     except Exception as e:
         return {"error": str(e)}                                      
 
-@app.get("/analisis/{desarrolladora}") 
+@app.get("/developer_reviews_analysis/{desarrolladora}") 
 async def get_developer(desarrolladora: str):
     try:
         resultado= developer_reviews_analysis(desarrolladora)
