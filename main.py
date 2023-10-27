@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from typing import Union
 from funciones import developer
-from funciones import userdata
-from funciones import UserForGenre  
+#from funciones import userdata
+#from funciones import UserForGenre  
 from funciones import best_developer_year  
 from funciones import  developer_reviews_analysis
 from fastapi.responses import JSONResponse
@@ -22,6 +22,7 @@ async def desarrollador(desarrollador: str):
     except Exception as e:
         return {"error": str(e)}    
 
+'''
 @app.get("/user/{user_id}")
 async def user(user_id: str):
     try:
@@ -37,7 +38,7 @@ async def genre(genero: str):
         return resultado
     except Exception as e:
         return {"error": str(e)}    
-    
+  '''  
 @app.get("/Mejor_desarrollador/{año}")
 async def Best_developer_year(year: str):
     try:

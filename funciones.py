@@ -5,7 +5,7 @@ import pyarrow.parquet as pq
 
 # Cargar los DataFrames desde los archivos parquet
 games=pd.read_parquet("games.parquet")
-items=pd.read_parquet("items.parquet")
+#items=pd.read_parquet("items.parquet")
 reviews=pd.read_parquet("reviews.parquet")
 
 
@@ -42,6 +42,7 @@ def developer(desarrollador):
     return diccionario
 
 
+'''
 
 #funcion 2 
 #Realizar la unión de los DataFrames
@@ -100,7 +101,7 @@ def UserForGenre(genero):
 
     return {"Usuario con más horas jugadas": usur_mas_horas, "Horas jugadas por año": Horas_por_año}
 
-
+'''
 #funcion 4
 
 def best_developer_year(año: int):
