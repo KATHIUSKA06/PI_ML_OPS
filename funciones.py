@@ -137,19 +137,19 @@ def developer_reviews_analysis(desarrolladora:str):
     # Se devuelve un diccionario con los resultados obtenidos
     return dicc
  
-
+with open ('modelo.pkl', 'rb') as archivo:
+    modelo = pickle.load(archivo)
 #funcion 6
 def recomendacion_usuario(user_id):
-    with open ('modelo.pkl', 'rb') as archivo:
-        modelo = pickle.load(archivo)
+   
     #ID del usuario para el cual quieres obtener recomendaciones
-    usuario_especifico = user_id  # Reemplaza 'js41637' con el ID del usuario para el que quieres las recomendaciones
+    usuario_especifico = user_id 
 
     #Crear una lista de juegos ya valorados por el usuario específico
     juegos_valorados = new_df[new_df['user_id'] == usuario_especifico]['app_name'].unique()
 
     #Crear una lista de todos los juegos disponibles
-    todos_los_juegos = new_df['app_name'].unique()
+    todos_los_juegos = new_df['app_name'].uniques()
 
     #Crear una lista de juegos no valorados por el usuario específico
     juegos_no_valorados = list(set(todos_los_juegos) - set(juegos_valorados))
