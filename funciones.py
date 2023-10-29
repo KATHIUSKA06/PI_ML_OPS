@@ -160,7 +160,7 @@ def recomendacion_usuario(user_id):
     #Ordenar las predicciones en base a la valoración y obtener los juegos recomendados
     recomendaciones = sorted(predicciones, key=lambda x: x.est, reverse=True)[:5]  # Obtener las 5 mejores recomendaciones
 
-    #Mostrar los juegos recomendados
+    lista=list()
     for recomendacion in recomendaciones:
-        print(f"Juego: {recomendacion.iid}, Valoración estimada: {recomendacion.est}")
-    return recomendaciones
+        lista.append(recomendacion.iid)
+    return f'Juego1: {lista[0]}, Juego2: {lista[1]}, Juego3: {lista[2]}, Juego4: {lista[3]}, Juego5: {lista[4]}'
