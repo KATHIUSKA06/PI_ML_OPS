@@ -163,4 +163,4 @@ def recomendacion_usuario(user_id):
     lista=list()
     for recomendacion in recomendaciones:
         lista.append(recomendacion.iid)
-    return f'Juego1: {lista[0]}, Juego2: {lista[1]}, Juego3: {lista[2]}, Juego4: {lista[3]}, Juego5: {lista[4]}'
+    return { 'Juego1': {lista[0]}, 'Juego2': {lista[1]}, 'Juego3': {lista[2]}, 'Juego4': {lista[3]}, 'Juego5': {lista[4]}}
