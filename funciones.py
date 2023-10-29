@@ -141,7 +141,8 @@ with open ('modelo.pkl', 'rb') as archivo:
     modelo = pickle.load(archivo)
 #funcion 6
 def recomendacion_usuario(user_id):
-   
+    if user_id not in new_df['user_id'].unique():
+        return {'error': 'El usuario especificado no existe.'}
     #ID del usuario para el cual quieres obtener recomendaciones
     usuario_especifico = user_id 
 
