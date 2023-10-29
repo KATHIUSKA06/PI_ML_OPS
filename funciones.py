@@ -69,7 +69,7 @@ def userdata(user_id):
 
     return resultados
 
-
+'''
 #funcion 3
 merged_items_games=pd.merge(games,items,on="item_id")
 
@@ -94,6 +94,8 @@ def UserForGenre(genero):
         Horas_por_año[clave_formateada] = valor_formateado
 
     return {"Usuario con más horas jugadas": usur_mas_horas, "Horas jugadas por año": Horas_por_año}
+'''
+
 
 
 #funcion 4
@@ -133,6 +135,7 @@ def developer_reviews_analysis(desarrolladora:str):
     # Se devuelve un diccionario con los resultados obtenidos
     return dicc
  
+
 with open ('modelo.pkl', 'rb') as archivo:
     modelo = pickle.load(archivo)
 #funcion 6
