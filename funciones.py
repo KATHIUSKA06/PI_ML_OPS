@@ -12,8 +12,6 @@ new_df = pd.read_parquet('modelo.parquet')
 
 
 #funcion 1
-# Realizar una unión de los DataFrames
-
 def developer(desarrollador):
 
     df = games[["item_id", "price","developer","año_lanzamiento"]] #llamo a las columnas que necesito
@@ -44,8 +42,6 @@ def developer(desarrollador):
     return diccionario
 
 
-
-
 #funcion 2 
 #Realizar la unión de los DataFrames
 merged_reviews_games = reviews.merge(games[['item_id', 'price']])
@@ -73,7 +69,7 @@ def userdata(user_id):
 
     return resultados
 
-'''
+
 #funcion 3
 merged_items_games=pd.merge(games,items,on="item_id")
 
@@ -98,7 +94,7 @@ def UserForGenre(genero):
         Horas_por_año[clave_formateada] = valor_formateado
 
     return {"Usuario con más horas jugadas": usur_mas_horas, "Horas jugadas por año": Horas_por_año}
-'''
+
 
 #funcion 4
 
