@@ -5,6 +5,7 @@ from funciones import userdata
 #from funciones import UserForGenre  
 from funciones import best_developer_year  
 from funciones import  developer_reviews_analysis
+from funciones import recomendacion_usuario
 from fastapi.responses import JSONResponse
 from typing import List, Dict, Tuple, Sequence, Any, Union, Optional, Callable
 app = FastAPI()
@@ -59,3 +60,10 @@ async def get_developer(desarrolladora: str):
         return {"error":str(e)}
 
 
+@app.get("/recomendacion_usuario/{user_id}")
+async def get_recomendacion(user_id: str):
+    try:
+        resultado= recomendacion_usuario(user_id)
+        return resultado
+    except Exception as e:
+        return {"error":str(e)}

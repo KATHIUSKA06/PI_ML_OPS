@@ -7,6 +7,7 @@ import pyarrow.parquet as pq
 games=pd.read_parquet("games.parquet")
 #items=pd.read_parquet("items.parquet")
 reviews=pd.read_parquet("reviews.parquet")
+new_df = pd.read_parquet('modelo.parquet')
 
 
 #funcion 1
@@ -134,3 +135,29 @@ def developer_reviews_analysis(desarrolladora:str):
 
     # Se devuelve un diccionario con los resultados obtenidos
     return dicc
+
+
+#funcion 6
+def recomendacion_usuario(user_id):
+    #ID del usuario para el cual quieres obtener recomendaciones
+    usuario_especifico = user_id  # Reemplaza 'js41637' con el ID del usuario para el que quieres las recomendaciones
+
+    #Crear una lista de juegos ya valorados por el usuario específico
+    juegos_valorados = new_df[new_df['user_id'] == usuario_especifico]['app_name'].unique()
+
+    #Crear una lista de todos los juegos disponibles
+    todos_los_juegos = new_df['app_name'].unique()
+
+    #Crear una lista de juegos no valorados por el usuario específico
+    juegos_no_valorados = list(set(todos_los_juegos) - set(juegos_valorados))
+
+    #Generar predicciones para los juegos no valorados por el usuario
+    predicciones = [model.predict(usuario_especifico, juego) for juego in juegos_no_valorados]
+
+    #Ordenar las predicciones en base a la valoración y obtener los juegos recomendados
+    recomendaciones = sorted(predicciones, key=lambda x: x.est, reverse=True)[:5]  # Obtener las 5 mejores recomendaciones
+
+    #Mostrar los juegos recomendados
+    for recomendacion in recomendaciones:
+        print(f"Juego: {recomendacion.iid}, Valoración estimada: {recomendacion.est}")
+    return recomendaciones
