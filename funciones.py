@@ -149,7 +149,7 @@ def recomendacion_usuario(user_id):
     juegos_valorados = new_df[new_df['user_id'] == usuario_especifico]['app_name'].unique()
 
     #Crear una lista de todos los juegos disponibles
-    todos_los_juegos = new_df['app_name'].uniques()
+    todos_los_juegos = new_df['app_name'].unique()
 
     #Crear una lista de juegos no valorados por el usuario específico
     juegos_no_valorados = list(set(todos_los_juegos) - set(juegos_valorados))
