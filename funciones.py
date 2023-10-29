@@ -141,6 +141,7 @@ with open ('modelo.pkl', 'rb') as archivo:
     modelo = pickle.load(archivo)
 #funcion 6
 def recomendacion_usuario(user_id):
+    lista=[]
     if user_id not in new_df['user_id'].unique():
         return {'error': 'El usuario especificado no existe.'}
     #ID del usuario para el cual quieres obtener recomendaciones
@@ -161,7 +162,7 @@ def recomendacion_usuario(user_id):
     #Ordenar las predicciones en base a la valoración y obtener los juegos recomendados
     recomendaciones = sorted(predicciones, key=lambda x: x.est, reverse=True)[:5]  # Obtener las 5 mejores recomendaciones
 
-    lista=list()
+    
     for recomendacion in recomendaciones:
         lista.append(recomendacion.iid)
     return { 'Juego1': {lista[0]}, 'Juego2': {lista[1]}, 'Juego3': {lista[2]}, 'Juego4': {lista[3]}, 'Juego5': {lista[4]}}
