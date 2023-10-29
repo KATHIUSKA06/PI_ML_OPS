@@ -136,12 +136,12 @@ def developer_reviews_analysis(desarrolladora:str):
 
     # Se devuelve un diccionario con los resultados obtenidos
     return dicc
-
-with open ('modelo.pkl', 'rb') as archivo:
-    modelo = pickle.load(archivo)
+ 
 
 #funcion 6
 def recomendacion_usuario(user_id):
+    with open ('modelo.pkl', 'rb') as archivo:
+        modelo = pickle.load(archivo)  
     #ID del usuario para el cual quieres obtener recomendaciones
     usuario_especifico = user_id  # Reemplaza 'js41637' con el ID del usuario para el que quieres las recomendaciones
 
