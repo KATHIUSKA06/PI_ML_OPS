@@ -141,7 +141,7 @@ def developer_reviews_analysis(desarrolladora:str):
 #funcion 6
 def recomendacion_usuario(user_id):
     with open ('modelo.pkl', 'rb') as archivo:
-        modelo = pickle.load(archivo)  
+        modelo = pickle.load(archivo)
     #ID del usuario para el cual quieres obtener recomendaciones
     usuario_especifico = user_id  # Reemplaza 'js41637' con el ID del usuario para el que quieres las recomendaciones
 
