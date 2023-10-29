@@ -2,6 +2,7 @@ import pandas as pd
 import fastapi
 from fastapi import FastAPI
 import pyarrow.parquet as pq
+import pickle
 
 # Cargar los DataFrames desde los archivos parquet
 games=pd.read_parquet("games.parquet")
@@ -136,6 +137,8 @@ def developer_reviews_analysis(desarrolladora:str):
     # Se devuelve un diccionario con los resultados obtenidos
     return dicc
 
+with open ('modelo.pkl', 'rb') as archivo:
+    modelo = pickle.load(archivo)
 
 #funcion 6
 def recomendacion_usuario(user_id):
@@ -152,7 +155,7 @@ def recomendacion_usuario(user_id):
     juegos_no_valorados = list(set(todos_los_juegos) - set(juegos_valorados))
 
     #Generar predicciones para los juegos no valorados por el usuario
-    predicciones = [model.predict(usuario_especifico, juego) for juego in juegos_no_valorados]
+    predicciones = [modelo.predict(usuario_especifico, juego) for juego in juegos_no_valorados]
 
     #Ordenar las predicciones en base a la valoración y obtener los juegos recomendados
     recomendaciones = sorted(predicciones, key=lambda x: x.est, reverse=True)[:5]  # Obtener las 5 mejores recomendaciones
