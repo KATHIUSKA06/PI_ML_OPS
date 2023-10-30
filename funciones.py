@@ -16,7 +16,7 @@ with open ('modelo.pkl', 'rb') as archivo:
 
 #funcion 1
 def developer(desarrollador):
-    if desarrollador not in merged['user_id'].unique():
+    if desarrollador not in merged['developer'].unique():
         return {'error': 'El Desarrollador especificado no existe.'}
     #llamo a las columnas que necesito
     df = games[["item_id", "price","developer","año_lanzamiento"]] 
@@ -59,7 +59,7 @@ merged_reviews_games = reviews.merge(games[['item_id', 'price']])
 merged_reviews_games.drop(columns=['helpful','año',"sentiment_analysis"], inplace=True)
 
 def userdata(user_id):
-    if user_id not in merged['user_id'].unique():
+    if user_id not in merged_reviews_games['user_id'].unique():
         return {'error': 'El usuario especificado no existe.'}
     # Filtrar los datos para el usuario especificado
     user_data = merged_reviews_games[merged_reviews_games['user_id'] == user_id]
@@ -116,7 +116,7 @@ def UserForGenre(genero):
 def best_developer_year(año: int):
     # Realizar la unión de los DataFrames
     merged_df = pd.merge(reviews, games, on='item_id')
-    if año not in merged['user_id'].unique():
+    if año not in merged_df['año'].unique():
         return {'error': 'El año especificado no existe.'}
 
     # Filtrar los juegos por año y por recomendación positiva
@@ -132,7 +132,7 @@ def best_developer_year(año: int):
 #funcion 5
 merged = reviews.merge(games[['item_id', 'price',"developer"]], on='item_id')
 def developer_reviews_analysis(desarrolladora:str):
-    if desarrolladora not in merged['user_id'].unique():
+    if desarrolladora not in merged['developer'].unique():
         return {'error': 'El Desarrollador especificado no existe.'}
     
     #filtrar las columnas a utilizar 
