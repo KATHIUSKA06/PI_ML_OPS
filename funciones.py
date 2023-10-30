@@ -10,34 +10,45 @@ games=pd.read_parquet("games.parquet")
 reviews=pd.read_parquet("reviews.parquet")
 new_df = pd.read_parquet('modelo.parquet')
 
+#modelo.pkl para la función 6
+with open ('modelo.pkl', 'rb') as archivo:
+    modelo = pickle.load(archivo)
 
 #funcion 1
 def developer(desarrollador):
+    if desarrollador not in merged['user_id'].unique():
+        return {'error': 'El Desarrollador especificado no existe.'}
+    #llamo a las columnas que necesito
+    df = games[["item_id", "price","developer","año_lanzamiento"]] 
+    
+    #llamo al desarrollador
+    developer = df[df["developer"] == desarrollador]
+    
+    #obtengo la cantidad por año 
+    cantidad_item = developer.groupby("año_lanzamiento")["item_id"].count() 
+    
+    #juegos gratuitos del desarrollador
+    gratis = developer[developer["price"] == 0] 
+    
+    #cantidad juegos gratis por año 
+    total_gratis= gratis.groupby("año_lanzamiento")["price"].count() 
 
-    df = games[["item_id", "price","developer","año_lanzamiento"]] #llamo a las columnas que necesito
-    df_developer = df[df["developer"] == desarrollador] #llamo al desarrollador
-
-    cantidad_item = df_developer.groupby("año_lanzamiento")["item_id"].count() #obtengo la cantidad por año 
-
-    Free = df_developer[df_developer["price"] == 0] #juegos gratuitos del desarrollador
-
-    total_free = Free.groupby("año_lanzamiento")["price"].count() #cantidad de gratis por año 
-
-    cont_free_año = round((total_free/cantidad_item)*100,2) #porcentaje por free por año 
+    #porcentaje gratis por año 
+    cont_gratis_año = round((total_gratis/cantidad_item)*100,2) 
 
     #asigno nombre a las series
     cantidad_item.name = "Cantidad de Items"
 
-    cont_free_año.name = "Contenido Free"
+    cont_gratis_año.name = "Contenido Free"
+    #unimos las dos tablas para hacerla unica
+    tabla = pd.merge(cantidad_item, cont_gratis_año,on="año_lanzamiento").reset_index() 
 
-    tabla = pd.merge(cantidad_item, cont_free_año,on="año_lanzamiento").reset_index() #unimos las dos tablas para hacerla unica
-
-    
-    tabla = tabla.fillna(0) #reemplazo los nan por 0
+    #reemplazo los nan por 0
+    tabla = tabla.fillna(0) 
     
     tabla["Contenido Free"] = tabla["Contenido Free"].apply(lambda x: f"{x}%")
-    
-    diccionario = tabla.to_dict(orient="records") #convierto la tabla en diccionario
+    #convierto la tabla en diccionario
+    diccionario = tabla.to_dict(orient="records") 
     
     return diccionario
 
@@ -48,6 +59,8 @@ merged_reviews_games = reviews.merge(games[['item_id', 'price']])
 merged_reviews_games.drop(columns=['helpful','año',"sentiment_analysis"], inplace=True)
 
 def userdata(user_id):
+    if user_id not in merged['user_id'].unique():
+        return {'error': 'El usuario especificado no existe.'}
     # Filtrar los datos para el usuario especificado
     user_data = merged_reviews_games[merged_reviews_games['user_id'] == user_id]
     # Calcular la cantidad de dinero gastado por el usuario
@@ -103,6 +116,8 @@ def UserForGenre(genero):
 def best_developer_year(año: int):
     # Realizar la unión de los DataFrames
     merged_df = pd.merge(reviews, games, on='item_id')
+    if año not in merged['user_id'].unique():
+        return {'error': 'El año especificado no existe.'}
 
     # Filtrar los juegos por año y por recomendación positiva
     df_year = merged_df[(merged_df['año'] == año) & (merged_df['recommend'] == True) & (merged_df['sentiment_analysis'] == 2)]
@@ -117,37 +132,35 @@ def best_developer_year(año: int):
 #funcion 5
 merged = reviews.merge(games[['item_id', 'price',"developer"]], on='item_id')
 def developer_reviews_analysis(desarrolladora:str):
+    if desarrolladora not in merged['user_id'].unique():
+        return {'error': 'El Desarrollador especificado no existe.'}
     
-    df = merged[['user_id', 'item_id','developer','año','sentiment_analysis']] # Se filtran las columnas a utilizar y se eliminan duplicados
+    #filtrar las columnas a utilizar 
+    df = merged[['user_id', 'item_id','developer','año','sentiment_analysis']] 
+    #filtrar los datos por desarrolladora
+    df_merged = df[df["developer"] == desarrolladora] 
 
+    # Se obtienen la cantidad de reviews positivas y negativas
+    reviews_positivas = df_merged[df_merged["sentiment_analysis"] == 2].shape[0] 
+    reviews_negativas = df_merged[df_merged["sentiment_analysis"] == 0].shape[0]
 
-    df_merged = df[df["developer"] == desarrolladora] # Se filtran los datos por desarrolladora
-
-    
-    positive_reviews = df_merged[df_merged["sentiment_analysis"] == 2].shape[0] # Se obtienen la cantidad de reviews positivas y negativas
-    negative_reviews = df_merged[df_merged["sentiment_analysis"] == 0].shape[0]
-
-
-    resumen_reviews = f"[Negative = {negative_reviews}, Positive = {positive_reviews}]" # Se crea un string con el resumen de las reviews
-
-    dicc = {desarrolladora : resumen_reviews} # Se crea un diccionario con los resultados obtenidos
+    # Se crea un string con el resumen de las reviews
+    resumen_reviews = f"[Negative = {reviews_negativas}, Positive = {reviews_positivas}]" 
+    # Se crea un diccionario con los resultados obtenidos
+    dicc = {desarrolladora : resumen_reviews} 
 
     # Se devuelve un diccionario con los resultados obtenidos
     return dicc
  
 
-with open ('modelo.pkl', 'rb') as archivo:
-    modelo = pickle.load(archivo)
 #funcion 6
-def recomendacion_usuario(user_id):
+def recomendacion_usuario( id_usuario ):
     lista=[]
-    if user_id not in new_df['user_id'].unique():
+    if id_usuario not in new_df['user_id'].unique():
         return {'error': 'El usuario especificado no existe.'}
-    #ID del usuario para el cual quieres obtener recomendaciones
-    usuario_especifico = user_id 
-
-    #Crear una lista de juegos ya valorados por el usuario específico
-    juegos_valorados = new_df[new_df['user_id'] == usuario_especifico]['app_name'].unique()
+    
+    #Crear una lista de juegos valorados por el usuario
+    juegos_valorados = new_df[new_df['user_id'] == id_usuario]['app_name'].unique()
 
     #Crear una lista de todos los juegos disponibles
     todos_los_juegos = new_df['app_name'].unique()
@@ -156,12 +169,23 @@ def recomendacion_usuario(user_id):
     juegos_no_valorados = list(set(todos_los_juegos) - set(juegos_valorados))
 
     #Generar predicciones para los juegos no valorados por el usuario
-    predicciones = [modelo.predict(usuario_especifico, juego) for juego in juegos_no_valorados]
+    predicciones = [modelo.predict(id_usuario, juego) for juego in juegos_no_valorados]
 
     #Ordenar las predicciones en base a la valoración y obtener los juegos recomendados
     recomendaciones = sorted(predicciones, key=lambda x: x.est, reverse=True)[:5]  # Obtener las 5 mejores recomendaciones
 
+  # Almacenar los nombres de los juegos recomendados en una lista
+    juegos_recomendados = [recomendacion.iid for recomendacion in recomendaciones]
     
-    for recomendacion in recomendaciones:
-        lista.append(recomendacion.iid)
-    return { 'Juego1': {lista[0]}, 'Juego2': {lista[1]}, 'Juego3': {lista[2]}, 'Juego4': {lista[3]}, 'Juego5': {lista[4]}}
+    # Crear un diccionario con los nombres de los juegos recomendados
+    recomendaciones_dict = {
+        'Juego 1': juegos_recomendados[0],
+        'Juego 2': juegos_recomendados[1],
+        'Juego 3': juegos_recomendados[2],
+        'Juego 4': juegos_recomendados[3],
+        'Juego 5': juegos_recomendados[4]
+    }
+    
+    # Devolver el diccionario con los nombres de los juegos recomendados
+    return recomendaciones_dict
+    
