@@ -59,7 +59,7 @@ Este proyecto nos desafía a adquirir habilidades y conocimientos esenciales par
     Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.
 
 + def **best_developer_year( año : int )**:
-    Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos)
+    Devuelve el top 3 de desarrolladores con juegos más recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos)
 
 + def **developer_reviews_analysis( desarrolladora : str )**:
     Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor positivo o negativo.
