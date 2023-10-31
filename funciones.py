@@ -16,7 +16,7 @@ with open ('modelo.pkl', 'rb') as archivo:
 
 #funcion 1
 def developer(desarrollador):
-    if desarrollador not in merged['developer'].unique():
+    if desarrollador not in games['developer'].unique():
         return {'error': 'El Desarrollador especificado no existe.'}
     #llamo a las columnas que necesito
     df = games[["item_id", "price","developer","año_lanzamiento"]] 
@@ -132,7 +132,7 @@ def best_developer_year(año: int):
 #funcion 5
 merged = reviews.merge(games[['item_id', 'price',"developer"]], on='item_id')
 def developer_reviews_analysis(desarrolladora:str):
-    if desarrolladora not in merged['developer'].unique():
+    if desarrolladora not in games['developer'].unique():
         return {'error': 'El Desarrollador especificado no existe.'}
     
     #filtrar las columnas a utilizar 
