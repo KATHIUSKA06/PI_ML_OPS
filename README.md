@@ -57,8 +57,6 @@ Este proyecto nos desafía a adquirir habilidades y conocimientos esenciales par
 
 + def **userdata( User_id : str )**:
     Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.
-+ def **UserForGenre( genero : str )**: 
-    Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.
 
 + def **best_developer_year( año : int )**:
     Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos)
