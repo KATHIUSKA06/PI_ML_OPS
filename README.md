@@ -45,7 +45,7 @@ Este proyecto nos desafía a adquirir habilidades y conocimientos esenciales par
 ➮ [Diccionario de Datos](Diccionario%20de%20Datos%20STEAM.xlsx)<br>
 ➮ [Fuente de Datos](https://drive.google.com/drive/folders/1HqBG2-sUkz_R3h1dZU5F2uAzpRn7BSpj) <br>
 ➮ [Link a Render](https://proyecto-1-ml-ops.onrender.com/docs) <br>
-➮ [Link al Video]() <br>
+➮ [Link al Video](https://www.youtube.com/watch?v=MygfrU7mtQ8) <br>
 
 # <h1 align=center> **Desarrollo Fast API** </h1>
 
