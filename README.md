@@ -1,6 +1,4 @@
-<p align="center"><img src="images/henry_logo.png"></p>
-
-# <h1 align=center> Cohorte Data-FT16 -- Kathiuska Mangones </h1>
+<p align="center"><img src="src\henry_logo.png" height=100></p>
 
 # <h1 align=center> **PROYECTO INDIVIDUAL Nº1** </h1>
 
@@ -13,85 +11,86 @@
 
 # <h1 align=center> **Introducción** </h1>
 
-En este proyecto vamos a adentrarnos en el mundo de las Operaciones de Machine Learning, abordando tres etapas fundamentales: Preparación de datos, exploración y transformación de los datos, y aplicación de técnicas de Machine Learning.
+En este emocionante proyecto, nos sumergiremos en el mundo de las Operaciones de Machine Learning, abordando tres etapas fundamentales que son esenciales para el éxito en este campo. Comienza con la Preparación, la Exploración y Transformación de Datos, luego avanza hacia el Análisis exploratorio de datos (EDA) y finalmente hacia la Aplicación de Técnicas de Machine Learning, donde se lleva a cabo la exploración y entrenamiento del modelo.
 
-Se trabajará con un dataset de juegos de la plataforma Steam.
+Nuestra misión se centra en un conjunto de datos relacionado con los juegos de la plataforma Steam, un entorno que entusiasma a millones de usuarios en todo el mundo.
 
-En un primer paso, aplicaremos técnicas de preparacion de los datos y crearemos funciones especificas para construir una API a traves de FastAPI y desplegarla en un servidor web de Render, que permita acceder y consultar los datos y funciones de manera sencilla. Crearemos consultas específicas para obtener información como géneros más destacados, juegos lanzados en años concretos y otros detalles relevantes para el análisis de sentimientos y puntuaciones de juegos.
+# <h1 align=center> **Descripción** </h1>
 
-Luego, nos adentraremos en la etapa de exploración y transformación de los datos. Aquí nos encargaremos de limpiar y explorar los datos, preparándolos para futuras predicciones. El Análisis Exploratorio de Datos (AED) resultará esencial para comprender las relaciones entre distintas variables y detectar posibles patrones e irregularidades.
+En la primera etapa, asumimos el rol de Data Engineer y comenzamos el proceso de Extracción, Transformación y Carga (ETL). El proceso detallado se encuentra en  el notebook [ETL](ETL.ipynb). Durante esta fase, nos enfocamos en la limpieza de datos de los tres conjuntos de datos, eliminando valores nulos, creando una nueva columna llamada "sentiment_analysis" basada en la columna "recommend", y descartando columnas irrelevantes. Esto nos permitió preparar los datos para la siguiente fase.
 
-La fase final nos conducirá al núcleo del proyecto que es la creacion del modelo predictivo. Entrenaremos un algoritmo de aprendizaje automático para realizar pronósticos sobre los precios de los juegos en la plataforma Steam a traves de una regresión. Haremos una seleccion de features como género, año y especificaciones técnicas, con el objetivo de mejorar la precision del modelo.
+A continuación, aplicamos nuestras habilidades en la preparación de datos al crear funciones específicas para construir una API utilizando FastAPI. Esta API facilitará la interacción eficiente con nuestros datos y se alojará en un servidor web de Render para simplificar el acceso y la consulta de información valiosa. Hemos diseñado consultas especializadas para obtener datos como: la cantidad de ítems y el porcentaje de contenido gratuito por año según la empresa desarrolladora, el gasto por usuario y el porcentaje de recomendación basado en revisiones, también exploraremos los tres desarrolladores con juegos más recomendados por los usuarios para un año específico. lo cual se encuentra detallado en el archivo[funciones.py].
 
-Por otro lado, no nos limitaremos únicamente a la parte técnica; la comunicación de los resultados también es esencial. Generaremos un video que demuestre el funcionamiento de las funciones contenidas en el endpoint de la API.
+Nuestra próxima etapa se centra en explorar y transformar los datos. Durante esta fase, nos enfocamos en la limpieza y exploración de los datos, preparándolos para futuras predicciones. Utilizamos el Análisis Exploratorio de Datos (EDA) como nuestra herramienta clave para comprender las relaciones entre variables y detectar posibles patrones e irregularidades. El proceso se encuentra detallado en el cuaderno [EDA](EDA.ipynb).
 
-En este desafiante proyecto, adquiriremos habilidades para enfrentar situaciones del mundo real en el campo de las Operaciones de Aprendizaje Automático. Desde la preparación y análisis de datos hasta la implementación de un modelo predictivo para el precio de un juego de Steam en una API de fácil acceso.
+Finalmente, llegaremos al núcleo de nuestro proyecto: la creación de un modelo predictivo. Entrenamos un algoritmo de aprendizaje automático que se dedica a recomendar juegos, ya sea por elemento o usuario, utilizando técnicas de recomendación con la biblioteca "surprise", diseñada específicamente para sistemas de recomendación y filtrado colaborativo. El proceso se detalla en el cuaderno [machine](machine.ipynb).
 
-# <h1 align=center> **Diccionario de datos** </h1>
+No obstante, no nos limitamos a la parte técnica. Reconocemos la importancia de comunicar nuestros resultados de manera efectiva. Por lo tanto, hemos preparado un video que demuestra cómo funcionan las funciones contenidas en el endpoint de la API, lo que facilitará la comprensión y el acceso a nuestros avances.
+
+Este proyecto nos desafía a adquirir habilidades y conocimientos esenciales para abordar situaciones del mundo real en el campo de las Operaciones de Aprendizaje Automático. Desde la preparación y análisis de datos hasta la implementación de un modelo predictivo para recomendaciones de juegos en la plataforma Steam, estamos preparados para proporcionar un acceso sencillo y eficaz a información valiosa.
+
+# <h1 align=center> **Diccionario de Datos** </h1>
 
 <p align="center">
-<img src="src\diccionario.png"  height=400>
+<img src="src\diccionario.png"  height=500>
 </p>
 <hr>
 
 # <h1 align=center> **Links de utilidad** </h1>
 
-➮ Notebook del analisis exploratorio y creacion del modelo de Machine Learning: [Link al Notebook](https://github.com/MatiTejerina/MLOps-PI/blob/master/EDA%20%2B%20ML.ipynb)<br>
-➮ Fuente de datos: [Link al Dataset](https://github.com/MatiTejerina/MLOps-PI/blob/master/steam_games.json) <br>
-➮ Deployment: [Link de Render](https://mlops-steam.onrender.com/docs/) <br>
-➮ Video: [Link al Video]() <br>
 
-# <h1 align=center> **Desarrollo** </h1>
+➮ [ETL Jupyter Notebook](ETL.ipynb)<br>
+➮ [EDA Jupyter Notebook](EDA.ipynb)<br>
+➮ [Modelo Machine Learning](machine.ipynb)<br>
+➮ [Diccionario de Datos](Diccionario%20de%20Datos%20STEAM.xlsx)<br>
+➮ [Fuente de Datos](https://drive.google.com/drive/folders/1HqBG2-sUkz_R3h1dZU5F2uAzpRn7BSpj) <br>
+➮ [Link a Render](https://proyecto-1-ml-ops.onrender.com/docs) <br>
+➮ [Link al Video]() <br>
+
+# <h1 align=center> **Desarrollo Fast API** </h1>
 
 **`Desarrollo API`**: Se disponibilizan las siguientes funciones de consulta a traves de FastAPI:
 
-+ def **genero( *`Año`: str* )**:
-    Se ingresa un año y devuelve un diccionario con los 5 géneros más ofrecidos en el orden correspondiente.
 
-+ def **juegos( *`Año`: str* )**:
-    Se ingresa un año y devuelve un diccionario con los juegos lanzados en el año.
++ def **developer( desarrollador : str )**: 
+    Cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora. 
 
-+ def **specs( *`Año`: str* )**:
-    Se ingresa un año y devuelve un diccionario con los 5 specs que más se repiten en el mismo en el orden correspondiente. 
++ def **userdata( User_id : str )**:
+    Debe devolver cantidad de dinero gastado por el usuario, el porcentaje de recomendación en base a reviews.recommend y cantidad de items.
++ def **UserForGenre( genero : str )**: 
+    Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.
 
-+ def **earlyacces( *`Año`: str* )**:
-    Cantidad de juegos lanzados en un año con early access.
++ def **best_developer_year( año : int )**:
+    Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado. (reviews.recommend = True y comentarios positivos)
 
-+ def **sentiment( *`Año`: str* )**:
-    Según el año de lanzamiento, se devuelve un diccionario con la cantidad de registros que se encuentren categorizados con un análisis de sentimiento. 
-
-+ def **metascore( *`Año`: str* )**:
-    Top 5 juegos según año con mayor metascore.
++ def **developer_reviews_analysis( desarrolladora : str )**:
+    Según el desarrollador, se devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento como valor positivo o negativo.
 
 
 <br/>
 
-
-**`Deployment`**: Se desplegó la API con Render para poder ser consumida desde la web
+**`Deployment`**: Se desplegó la API con Render para poder ser consumida desde la web.
 
 <br/>
 
 **`Análisis exploratorio de los datos`**: _(Exploratory Data Analysis-EDA)_
 
-En esta fase del proyecto se crearon y seleccionaron las features que fueron utilizadas en el modelo, se completaron datos faltantes con informacion disponible en otras columnas, se eliminaron los datos que estaban en un formato extraño, se limpiaron los valores nulos, y se realizo one-hot encoding. Por ultimo se hizo un analisis univariable y multivariable para estudiar la distribucion de los datos de cada columna y la relacion entre ellos a traves de graficos, quitando outliers en el camino.
+En esta fase del proyecto, después de haber limpiado los datos, se llevaron a cabo investigaciones para comprender las relaciones entre las variables del conjunto de datos. Se buscó identificar outliers o anomalías, que no necesariamente son errores, y se detectaron patrones interesantes que podrían ser explorados en análisis posteriores. En esta ocasión, se realizó un EDA de manera manual, sin el uso de bibliotecas automatizadas, con el objetivo de aplicar los conceptos y tareas involucradas en este proceso. Finalmente, se realizó un análisis univariable y multivariable para estudiar la distribución de los datos en cada columna y la relación entre ellas a través de gráficos.
+
 
 **`Modelo de predicción`**: 
 
-La data es consumible por la API, está lista para ser utilizada por los departamentos de Analytics y Machine Learning, y nuestro EDA nos permite entender bien los datos a los que tenemos acceso. Se entrenó un modelo XGBoost de regresión para predecir la columna 'Price'. Se exportó el modelo como archivo pkl para ser importado en el script que contiene las funciones utilizadas en el main. Los features utilizados son los siguientes (Year: ejemplo-2015, Month: ejemplo-4, Action: ejemplo-1, Adventure: ejemplo-0, Casual: ejemplo-1, Early Access: ejemplo-0, Indie: ejemplo-1, Massively Multiplayer: ejemplo-0, RPG: ejemplo-1, Racing: ejemplo-0, Simulation: ejemplo-1, Sports: ejemplo-0, Strategy: ejemplo-1). El endpoint que disponibiliza el modelo es el siguiente:
+La data es consumible por la API, está lista para ser utilizada por los departamentos de Analytics y Machine Learning, y nuestro EDA nos permite entender bien los datos a los que tenemos acceso. Se entrenó un modelo surprise de recomendación para predecir recomendaciones de juegos a usuarios. Se exportó el modelo como archivo pkl para ser importado en el script que contiene las funciones utilizadas en el main.Ingresando el id de un usuario (ejemplo: user_id:Gamer0009), deberíamos recibir una lista con 5 juegos recomendados para dicho usuario.
+En este enfoque, el modelo se basa en el filtro usuario-ítem. Toma un usuario como entrada, busca usuarios similares y recomienda juegos que a esos usuarios similares les han gustado. 
 
-+ def **prediction( *`Year, Month, Action, Adventure, Casual, Early Access, Indie, Massively Multiplayer, RPG, Racing, Simulation, Sports, Strategy`* )**:
-    Ingresando estos parámetros, deberíamos recibir el precio predicho y **RMSE**.
++ def **recomendacion_usuario( id de usuario )**:<br/>
+    Ingresando el id de un usuario, deberíamos recibir una lista con 5 juegos recomendados para dicho usuario.
+ 
 
+<h1>Autor:</h1>
+
+Kathiuska del Carmen Mangones Ramos <br>
+Email: [kathiuska06@hotmail.com](kathiuska06@hotmail.com)<br>
+[GitHub](https://github.com/KATHIUSKA06/PI_ML_OPS/blob/master/README.md) <br>
+[LinkedIn](https://www.linkedin.com/in/kathiuska-mangones-ramos-1b494913b/)
 _________________________________________________________________________________________________________________
-
-<h1>Contribuciones:</h1>
-
-Este proyecto es de código abierto y está abierto a contribuciones y sugerencias. Si desea contribuir, siga las siguientes instrucciones:
-
-Haga un fork del repositorio: Haga una copia del repositorio en su propia cuenta de GitHub.
-
-Cree una nueva rama: Cree una nueva rama en su fork para trabajar en su característica o corrección específica.
-
-Realice sus cambios: Realice los cambios necesarios en la nueva rama, asegurándose de seguir las mejores prácticas de codificación y documentación.
-
-Realice un pull request: Una vez que haya completado sus cambios, envíe un pull request a la rama principal del repositorio original. Espere la revisión y aprobación del equipo.
